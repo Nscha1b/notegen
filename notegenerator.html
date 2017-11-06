@@ -1,0 +1,113 @@
+<html>
+<head>
+	<title>Note Generator</title>
+	<link rel="stylesheet" type="text/css" href="stylesheet.css">
+	<script src="javascript.js"></script>
+	
+</head>
+
+<body>
+	<h1 id="title">PNC</h1>
+	<h5 id="dropTitle">Note Generator 090</h5>
+	<form>
+		<label>Platform</label>
+		<br>
+		<input list="platform">
+		<datalist id="platform">
+			<option value="Empower">
+			<option value="Sales Edge/Genesis">
+			<option value="Other">
+			<option value="NA">
+		</datalist>
+		<br>
+		<label>Function</label>
+		<br>
+		<input list="function">
+		<datalist id="function">
+			<option value="Origination (Sales)">
+			<option value="Pre-Underwriter">
+			<option value="Underwriter">
+			<option value="Collateral">
+			<option value="Processor">
+			<option value="Closer">
+			<option value="Funder or Post-Funder">
+			<option value="Other">
+			<option value="NA">
+		</datalist>
+		<br>
+		<label>Loan #</label>
+		<br>
+		<input type="text" name="loanNumber">
+		<br>
+		<label>Bwr Last Name</label>
+		<br>
+		<input type="text" name="lastName">
+		<br>
+		<label>BUAT Location</label>
+		<br>
+		<input list="location">
+		<datalist id="location">
+			<option value="Downer's Grove">
+			<option value="Jacksonville">
+			<option value="Pittsburgh">
+			<option value="Sales">
+			<option value="NA">
+		</datalist>
+		<br>
+		<label>Able to Move on</label>
+		<br>
+		<input list="stuck">
+		<datalist id="stuck">
+			<option value="Yes">
+			<option value="No">
+			<option value="NA">
+		</datalist>
+		<br>
+		<label>Call Type</label>
+		<br>
+		<input list="callType">
+		<datalist id="callType">
+			<option value="Empower Profile Issue">
+			<option value="Genesis or Sales Edge">
+			<option value="AUS issue">
+			<option value="Compliance Ease">
+			<option value="Real EC Issue (appraisal, flood, title, fraud)">
+			<option value="credit report related or CBC Innovas">
+			<option value="Business card directory">
+			<option value="Escrow">
+		</datalist>
+		<br>
+		<label>Ambassadar</label>
+		<br>
+		<input list="ambassadar">
+		<datalist id="ambassadar">
+			<option value="Eric Stuhldreher">
+			<option value="Michele">
+			<option value="Alison">
+		</datalist>
+		<br>
+		<label>Procedure</label>
+		<br>
+		<input list="procedure">
+		<datalist id="procedure">
+			<option value="Yes">
+			<option value="No">
+			<option value="NA">
+		</datalist>
+		<br>
+		<label>Feedback</label>
+		<br>
+		<input type="text" name="feedback" value="">
+		<br>
+		<button class="button" id="reset" type="reset" value="Reset" onclick="clearFields()">Reset</button>
+	</form>
+
+<p>
+  <button class="button" id="copy" onclick="copyFunction()" class="js-textareacopybtn" style="vertical-align:top;">Copy</button>
+  <textarea class="js-copytextarea" id="textBlock"></textarea>
+</p>
+
+<img id="logo" src="logo.png">
+
+</body>
+</html>

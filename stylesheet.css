@@ -1,0 +1,80 @@
+body {
+  background: #F4741F;
+  min-height: 100%;
+  position: fixed;
+}
+
+h1 {
+  color: #0066ff;
+}
+
+#dropTitle {
+  position: fixed;
+  top: 0%;
+  clear: left;
+  left: 80px;
+
+}
+
+label {
+  font-size: 100%;
+}
+
+input {
+  margin-bottom: 1.5%;
+}
+
+input:focus {
+    background-color: #0066ff;
+    color: white;
+}
+
+textarea {
+    width: 250px;
+    height: 150px;
+    padding: 5px 5px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+    overflow: hidden;
+    position: fixed;
+    top: 462px;
+    left: 5px;
+
+}
+
+.button {
+    font-size: 30px;
+    background-color: #F4741F;
+    color: black;
+    border: 3px solid #0066ff;
+}
+
+#copy {
+  position: fixed;
+  clear: left;
+  left: 158px;
+  top: 360px;
+}
+.button:hover {
+  background-color: #0066ff;
+  color: white;
+}
+
+#reset {
+  position: fixed;
+  clear: left;
+  left: 155px;
+  top: 410px;
+}
+
+#logo {
+  width:100px;
+  height: auto;
+  float: left;
+  position: fixed;
+  top: 275px;
+  left: 150px;
+
+}
