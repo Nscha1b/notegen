@@ -4,24 +4,21 @@ body {
   position: fixed;
 }
 
+
+
+
 h1 {
   color: #0066ff;
 }
 
-#dropTitle {
-  position: fixed;
-  top: 0%;
-  clear: left;
-  left: 80px;
 
-}
 
 label {
   font-size: 100%;
 }
 
 input {
-  margin-bottom: 1.5%;
+  margin-bottom: 10px;
 }
 
 input:focus {
@@ -31,50 +28,89 @@ input:focus {
 
 textarea {
     width: 250px;
-    height: 150px;
+    height: 190px;
     padding: 5px 5px;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;
     resize: none;
-    overflow: hidden;
-    position: fixed;
-    top: 462px;
-    left: 5px;
 
 }
 
 .button {
-    font-size: 30px;
+    font-size: 16px;
     background-color: #F4741F;
     color: black;
     border: 3px solid #0066ff;
+width: 100px;
+height: auto;
 }
 
 #copy {
-  position: fixed;
-  clear: left;
-  left: 158px;
-  top: 360px;
+top: 510px;
+left: 190px;
+position: fixed;
+size: absolute;
 }
+
+#create {
+top: 550px;
+left: 190px;
+position: fixed;
+size: absolute;
+}
+
 .button:hover {
   background-color: #0066ff;
   color: white;
 }
 
 #reset {
-  position: fixed;
-  clear: left;
-  left: 155px;
-  top: 410px;
+top: 607px;
+left: 190px;
+position: fixed;
 }
 
 #logo {
-  width:100px;
+  width:60px;
   height: auto;
   float: left;
   position: fixed;
-  top: 275px;
-  left: 150px;
+  top: 0px;
+  left: 70px;
 
 }
+
+#textBlock {
+
+position: fixed;
+top: 645px;
+}
+
+
+#createBlock {
+height: 50px;
+position: fixed;
+top: 850px;
+}
+
+
+input:invalid {
+  box-shadow: 0 0 5px 1px red;
+}
+
+input:focus:invalid {
+  outline: none;
+}
+
+#submit {
+top: 607px;
+left: 300px;
+position: fixed;
+
+}
+
+#test {
+width: 200px;
+}
+
