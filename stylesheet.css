@@ -1,116 +1,88 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 body {
-  background: #F4741F;
-  min-height: 100%;
-  position: fixed;
+  padding: 5px 5%;
+  background: #fafafa;
+}
+
+h1 {
+  color: #FF5A09;
+  display:inline-block;margin-right:1px;
+
+}
+
+#dropTitle {
+  color: #0066ff;
+  display:inline-block;
+}
+
+div{
+  background-color: #e6e6e6;
+  border-radius: 4px;
+  border: 1px solid #FF5A09;
+  padding: 5%;
+}
+
+form input, select{
+    margin-bottom: 5px;
 }
 
 
-
-
-h1 {
+input[type=text],
+textarea {
+  width: 100%;
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  border-radius: 4px;
+  padding-bottom: 4px;
+  background-color: #f1f1f1;
+}
+input[type=text] {
+  width: 100%;
+  border-radius: 4px;
+  padding-bottom: 4px;
+  background-color: #f1f1f1;
   color: #0066ff;
 }
 
-
-
-label {
-  font-size: 100%;
-}
-
-input {
-  margin-bottom: 10px;
-}
-
-input:focus {
-    background-color: #0066ff;
-    color: white;
-}
-
-textarea {
-    width: 250px;
-    height: 190px;
-    padding: 5px 5px;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
+select {
+     width: 100%;
+    padding: 4px 4px;
+    border: none;
     border-radius: 4px;
-    resize: none;
+    background-color: #f1f1f1;
+    color: #0066ff;
+}
 
+label{
+  color: black;
+    line-height: 150%;
+    font-size: .85em;
+    font-weight: 900;
+}
+
+label.error {
+  color: #FF5A09;
+  font-weight: normal;
 }
 
 .button {
     font-size: 16px;
-    background-color: #F4741F;
+    background-color: #e6e6e6;
     color: black;
-    border: 3px solid #0066ff;
-width: 100px;
+    border: 1px solid #FF5A09;
+width: 100%;
 height: auto;
-}
-
-#copy {
-top: 510px;
-left: 190px;
-position: fixed;
-size: absolute;
-}
-
-#create {
-top: 550px;
-left: 190px;
-position: fixed;
-size: absolute;
+margin-bottom: 5px;
 }
 
 .button:hover {
   background-color: #0066ff;
   color: white;
 }
-
-#reset {
-top: 607px;
-left: 190px;
-position: fixed;
-}
-
-#logo {
-  width:60px;
-  height: auto;
-  float: left;
-  position: fixed;
-  top: 0px;
-  left: 70px;
-
-}
-
-#textBlock {
-
-position: fixed;
-top: 645px;
-}
-
-
-#createBlock {
-height: 50px;
-position: fixed;
-top: 850px;
-}
-
-
-input:invalid {
-  box-shadow: 0 0 5px 1px red;
-}
-
-input:focus:invalid {
-  outline: none;
-}
-
-#submit {
-top: 607px;
-left: 300px;
-position: fixed;
-
-}
-
-#test {
-width: 200px;
-}
-

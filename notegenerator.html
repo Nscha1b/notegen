@@ -1,251 +1,376 @@
+<!DOCTYPE html>
 <html>
 <head>
+	<meta charset="UTF-8">
+	<meta name="PNC Note Generator" content="PNC Note Generator">
+	<meta http-equiv="refresh" content="30">
 	<title>Note Generator</title>
 	<link rel="stylesheet" type="text/css" href="stylesheet.css">
-<SCRIPT>
+	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
+	<script src=validation.js></script>
 
+	<!--This is where JAVASCRIPT BEIGNS-->
 
- function submitfunction() {
-     var x = document.forms[0];
-     var txt = "";
-     var txt1 = "Downer's Grove";
-     var txtblank = "";
-     var i;
-     for (i = 0; i < x.length; i++) {
-       if (i == 0) {
-         txt = txt + "Note Generator  v0.90\nPlatform: " + x.elements[i].value + ".\n";
-       }
-       else if (i == 1) {
-         txt = txt + "Function: " + x.elements[i].value + ".\n";
-       }
-       else if (i == 2) {
-         txt = txt + "Loan: " + x.elements[i].value + ".\n";
-       }
-       else if (i == 3) {
-         txt = txt + "Bwr Lname: " + x.elements[i].value + ".\n";
-       }
-       else if (i == 4) {
-         
-         if (x.elements[i].value.toString() === "Downer's Grove"){
-           txt1 = "DG MTG Hub (Non-Sales)";
-         }
-         
-        else if (x.elements[i].value.toString() === "Jacksonville"){
-           txt1 = "Jax MTG Hub (Non-Sales)";
-         }
-         
-        else if (x.elements[i].value.toString() === "Pittsburgh"){
-           txt1 = "Pit MTG Hub (Non-Sales)";
-         }
-           
-         else{
-           
-	   		txt1 = x.elements[i].value.toString();
-         }
-         txt = txt + "Buat Location: " + txt1 + ".\n";
-       }
-       else if (i == 5) {
-         txt = txt + "Able to Move on: " + x.elements[i].value + ".\n";
-       }
-       else if (i == 6) {
-         txt = txt + "Call Type: " + x.elements[i].value + ".\n";
-       }
-       else if (i == 7) {
-         txt = txt + "BUAT Ambassadar: " + x.elements[i].value + ".\n";
-       }
-       else if (i == 8) {
-         txt = txt + "Procedure Avail: " + x.elements[i].value + ".\n";
-       }
-       else if (i == 9) {
-         txt = txt + "Feedback: " + x.elements[i].value + ".\n";
-       }
-       else if (i == 10) {
-         txtblank = txtblank + "HLHD - Empower - Mortgage – " + x.elements[i].value +" " + x.elements[2].value;
-       }
+	<SCRIPT>
+	// Initialize form validation on form.
+	function validate() {
+		$(function() {
+			$("form[name='form1']").validate({
+				// Specify validation rules
+				// The key name on the left side is the name attribute
+				// of an input field. Validation rules are defined
+				// on the right side
+				rules: {
+					platform: "required",
+					function: "required",
+					loanNumber: "required",
+					lastName: "required",
+					location: "required",
+					stuck: "required",
+					callType: "required",
+					ambassadar: "required",
+					procedure: "required",
+					shortText: "required",
 
-   }
+				},
+				// Specify validation error messages
+				messages: {
+					platform: "You must select a platform",
+					function: "You must select a function",
+					loanNumber: "Loan number is required",
+					lastName: "Borrowers last name required",
+					location: "Location is required",
+					stuck: "Required",
+					callType: "You must select a call type",
+					ambassadar: "You must select an ambassadar",
+					procedure: "Are they using a procedure",
+					shortText: "You must enter a short text",
+				},
+			});
+			//IF the form has no validation errors run copy function
+			if ($('#form1').valid()) {
+				copyFunction();
+			}
+		});
+	}
 
-document.getElementById("textBlock").innerHTML = txt;
-document.getElementById("createBlock").innerHTML = txtblank;  
-var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
-var copyTextarea = document.querySelector('.js-copytextarea');
-copyTextarea.select();
-     
+	function copyFunction() {
+		var x = document.forms[0];
+		var txt = "";
+		var txt1 = "Downer's Grove";
+		var txtblank = "";
+		var i;
+		for (i = 0; i < x.length; i++) {
+			if (i == 0) {
+				txt = txt + "Note Generator  v0.90\nPlatform: " + x.elements[i].value + ".\n";
+			}
+			else if (i == 1) {
+				txt = txt + "Function: " + x.elements[i].value + ".\n";
+			}
+			else if (i == 2) {
+				txt = txt + "Loan: " + x.elements[i].value + ".\n";
+			}
+			else if (i == 3) {
+				txt = txt + "Bwr Lname: " + x.elements[i].value + ".\n";
+			}
+			else if (i == 4) {
+				txt = txt + "Buat Location: " + x.elements[i].value + ".\n";
+			}
+			else if (i == 5) {
+				txt = txt + "Able to Move on: " + x.elements[i].value + ".\n";
+			}
+			else if (i == 6) {
+				txt = txt + "Call Type: " + x.elements[i].value + ".\n";
+			}
+			else if (i == 7) {
+				txt = txt + "BUAT Ambassadar: " + x.elements[i].value + ".\n";
+			}
+			else if (i == 8) {
+				txt = txt + "Procedure Avail: " + x.elements[i].value + ".\n";
+			}
+			else if (i == 9) {
+				txt = txt + "Feedback: " + x.elements[i].value + ".\n";
+			}
+			else if (i == 10) {
+				txtblank = txtblank + "HLHD - Empower - Mortgage ï¿½ " + x.elements[i].value +" " + x.elements[2].value;
+			}
 
+		}
 
-try {
-  var successful = document.execCommand('copy');
-  var msg = successful ? 'successful' : 'unsuccessful';
-  console.log('Copying text command was ' + msg);
-} catch (err) {
-  console.log('Oops, unable to copy');
-}
-     
+		//this is where we actually copy
+		document.getElementById("textBlock").innerHTML = txt;
+		document.getElementById("createBlock").innerHTML = txtblank;
+		var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
+		var copyTextarea = document.querySelector('.js-copytextarea');
+		copyTextarea.select();
 
-     
-   
-     
-     
-     
-}
+		//print to browser console if successfull
+		try {
+			var successful = document.execCommand('copy');
+			var msg = successful ? 'successful' : 'unsuccessful';
+			console.log('Copying text command was ' + msg);
+		} catch (err) {
+			console.log('Oops, unable to copy');
+		}
 
-function createFunction() {
-  
-var createTextareaBtn = document.querySelector('.js-textareacreatebtn');
-var createTextarea = document.querySelector('.js-createtextarea');
-createTextarea.select();
-  
-  try {
-  var successful = document.execCommand('copy');
-  var msg = successful ? 'successful' : 'unsuccessful';
-  console.log('Copying text command was ' + msg);
-} catch (err) {
-  console.log('Oops, unable to copy');
-}
-  
-}
+	}
 
+	function createFunction() {
 
+		var createTextareaBtn = document.querySelector('.js-textareacreatebtn');
+		var createTextarea = document.querySelector('.js-createtextarea');
+		createTextarea.select();
 
+		try {
+			var successful = document.execCommand('copy');
+			var msg = successful ? 'successful' : 'unsuccessful';
+			console.log('Copying text command was ' + msg);
+		} catch (err) {
+			console.log('Oops, unable to copy');
+		}
 
-   function clearFields() {
-     document.getElementById("textBlock").innerHTML = "";
-     document.getElementById("createBlock").innerHTML = "";
-   }
-
-
-
-
+	}
+	
+	function clearFields() {
+		document.getElementById("textBlock").innerHTML = "";
+		document.getElementById("createBlock").innerHTML = "";
+		document.getElementById("form1").reset();
+	}
 
 </SCRIPT>
-	
+
+<!--This is where CSS BEGIN-->
+<style type="text/css">
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+body {
+	padding: 5px 5%;
+	background: #fafafa;
+}
+
+h1 {
+	color: #FF5A09;
+	display:inline-block;margin-right:1px;
+
+}
+
+#dropTitle {
+	color: #0066ff;
+	display:inline-block;
+}
+
+.formstyle{
+	background-color: #e6e6e6;
+	border-radius: 4px;
+	border: 1px solid #FF5A09;
+	padding: 5%;
+}
+
+form input, select{
+	margin-bottom: 5px;
+}
+
+
+input[type=text],
+textarea {
+	width: 100%;
+	border-top: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+	border-radius: 4px;
+	padding-bottom: 4px;
+	background-color: #f1f1f1;
+}
+input[type=text] {
+	width: 100%;
+	border-radius: 4px;
+	padding-bottom: 4px;
+	background-color: #f1f1f1;
+	color: #0066ff;
+}
+
+select {
+	width: 100%;
+	padding: 4px 4px;
+	border: none;
+	border-radius: 4px;
+	background-color: #f1f1f1;
+	color: #0066ff;
+}
+
+label{
+	color: black;
+	line-height: 150%;
+	font-size: .85em;
+	font-weight: 900;
+}
+
+label.error {
+	color: #FF5A09;
+	font-weight: normal;
+}
+
+.button {
+	font-size: 16px;
+	background-color: #e6e6e6;
+	color: black;
+	border: 1px solid #FF5A09;
+	width: 100%;
+	height: auto;
+	margin-bottom: 5px;
+}
+
+.button:hover {
+	background-color: #0066ff;
+	color: white;
+}
+
+/*
+This is the css for the alert section
+*/
+.alert {
+	background-color: #e6e6e6;
+	border-radius: 4px;
+	border: 1px solid #FF5A09;
+	margin-bottom: 5px;
+	padding: 5px;
+}
+</style>
 </head>
 
+<!--This is where HTML BEGIN-->
 <body>
 	<h1 id="title">PNC</h1>
-	
 	<h5 id="dropTitle">Note Generator 090</h5>
-	<form id="form1">
-		<label>Platform</label>
-		<br>
-		
-		<select id="platform" required>
-			<option value="" selected disabled hidden></option>
-			<option value="Empower">Empower</option>
-			<option value="Sales Edge or Genesis">Sales Edge or Genesis</option>
-			<option value="Other">Other</option>
-			<option value="NA">NA</option>
-		</select>
-		<br>
-		<label>Function</label>
-		<br>
-		<select id="function" required>
-			<option value="" selected disabled hidden></option>
-			<option value="Origination (Sales)">Origination (Sales)</option>
-			<option value="Pre-Underwriter">Pre-Underwriter</option>
-			<option value="Underwriter">Underwriter</option>
-			<option value="Collateral">Collateral</option>
-			<option value="Processor">Processor</option>
-			<option value="Closer">Closer</option>
-			<option value="Funder or Post-Funder">Funder or Post-Funder</option>
-			<option value="Other">Other</option>
-			<option value="NA">NA</option>
-		</select>
-		<br>
-		<label>Loan #</label>
-		<br>
-		<input type="text" name="loanNumber">
-		<br>
-		<label>Bwr Last Name</label>
-		<br>
-		<input type="text" name="lastName">
-		<br>
-		<label>BUAT Location</label>
-		<br>
-		<input list="location">
-		<datalist id="location">
-			<option value="Downer's Grove">
-			<option value="Jacksonville">
-			<option value="Pittsburgh">
-			<option value="Sales (All locations)">
-			<option value="NA">
-		</datalist>
-		<br>
-		<label>Able to Move on</label>
-		<br>
-		<input list="stuck">
-		<datalist id="stuck">
-			<option value="Yes">
-			<option value="No">
-			<option value="NA">
-		</datalist>
-		<br>
-		<label>Call Type</label>
-		<br>
-		<input list="callType">
-		<datalist id="callType">
-			<option value="Empower Profile Issue">
-			<option value="Genesis or Sales Edge">
-			<option value="AUS issue">
-			<option value="Compliance Ease">
-			<option value="Real EC Issue (appraisal, flood, title, fraud)">
-			<option value="credit report related or CBC Innovas">
-			<option value="Business card directory">
-			<option value="Escrow">
-            <option value="Document Issue">
-            <option value="Pricing and Products">
-            <option value="Fees (not relating to escrow)">
-            <option value="Vendor Issue">
-            <option value="Conditions">
-            <option value="Procedural Request (BUAT Only)">
-            <option value="Other">
-            <option value="N/A">
-              
-		</datalist>
-		<br>
-		<label>Ambassadar</label>
-		<br>
-		<input list="ambassadar">
-		<datalist id="ambassadar">
-			<option value="Eric Stuhldreher">
-			<option value="Jose Silva">
-			<option value="Allison Garrett">
-            <option value="Michele Wuenschel">
-            <option value="NA">
-		</datalist>
-		<br>
-		<label>Procedure</label>
-		<br>
-		<input list="procedure">
-		<datalist id="procedure">
-			<option value="Yes">
-			<option value="No">
-			<option value="NA">
-		</datalist>
-		<br>
-		<label>Feedback</label>
-		<br>
-		<input type="text" name="feedback" value="">
-		<br>
-      <label>Short Text Description</label>
-		<br>
-		<input type="text" name="shortText" value="">
-      	<br>
-		<button class="button" id="submit" type="submit" onclick="submitfunction()">submit</button>
+	<!--Start Alert section-->
+	<div class="alert">
+		<p>Alerts</p>
+		<p style="color: #0066ff;">INC500522343 Parent ticket. User cannot create new loan in empower.</p>
+	</div>
+	<!--End Alert section-->
+	<div class="formstyle">
+		<form id="form1" name="form1">
+			<label>Platform</label>
+			<br>
+
+			<select id="platform" name="platform">
+				<option value="" selected disabled hidden></option>
+				<option value="Empower">Empower</option>
+				<option value="Sales Edge or Genesis">Sales Edge or Genesis</option>
+				<option value="Other">Other</option>
+				<option value="NA">NA</option>
+			</select>
+			<br>
+			<label>Function</label>
+			<br>
+			<select id="function" name="function">
+				<option value="" selected disabled hidden></option>
+				<option value="Origination (Sales)">Origination (Sales)</option>
+				<option value="Pre-Underwriter">Pre-Underwriter</option>
+				<option value="Underwriter">Underwriter</option>
+				<option value="Collateral">Collateral</option>
+				<option value="Processor">Processor</option>
+				<option value="Closer">Closer</option>
+				<option value="Funder or Post-Funder">Funder or Post-Funder</option>
+				<option value="Other">Other</option>
+				<option value="NA">NA</option>
+			</select>
+			<br>
+			<label>Loan #</label>
+			<br>
+			<input type="text" name="loanNumber" id="loanNumber">
+			<br>
+			<label>Bwr Last Name</label>
+			<br>
+			<input type="text" name="lastName">
+			<br>
+			<label>BUAT Location</label>
+			<br>
+			<select id="location" name="location">
+				<option value="" selected disabled hidden></option>
+				<option value="DDG MTG Hub (Non-Sales)">Downer's Grove</option>
+				<option value="Jax MTG Hub (Non-Sales)">Jacksonville</option>
+				<option value="Pit MTG Hub (Non-Sales)">Pittsburgh</option>
+				<option value="Sales (All locations)">Sales (All locations)</option>
+				<option value="NA">NA</option>
+			</select>
+			<br>
+			<label>Able to Move on</label>
+			<br>
+			<select id="stuck" name="stuck">
+				<option value="" selected disabled hidden></option>
+				<option value="Yes">Yes</option>
+				<option value="No">No</option>
+				<option value="NA">NA</option>
+			</select>
+			<br>
+			<label>Call Type</label>
+			<br>
+			<select id="callType" name="callType">
+				<option value="" selected disabled hidden></option>
+				<option value="Empower Profile Issue">Empower Profile Issue</option>
+				<option value="Genesis or Sales Edge">Genesis or Sales Edge</option>
+				<option value="AUS issue">AUS issue</option>
+				<option value="Compliance Ease">Compliance Ease</option>
+				<option value="Real EC Issue (appraisal, flood, title, fraud)">Real EC Issue (appraisal, flood, title, fraud)</option>
+				<option value="credit report related or CBC Innovas">credit report related or CBC Innovas</option>
+				<option value="Business card directory">Business card directory</option>
+				<option value="Escrow">Escrow</option>
+				<option value="Document Issue">Document Issue</option>
+				<option value="Pricing and Products">Pricing and Products</option>
+				<option value="Fees (not relating to escrow)">Fees (not relating to escrow)</option>
+				<option value="Vendor Issue">Vendor Issue</option>
+				<option value="Conditions">Conditions</option>
+				<option value="Procedural Request (BUAT Only)">Procedural Request (BUAT Only)</option>
+				<option value="Other">Other</option>
+				<option value="N/A">N/A</option>
+
+			</select>
+			<br>
+			<label>Ambassadar</label>
+			<br>
+			<select id="ambassadar" name="ambassadar">
+				<option value="" selected disabled hidden></option>
+				<option value="Eric Stuhldreher">Eric Stuhldreher</option>
+				<option value="Jose Silva">Jose Silva</option>
+				<option value="Allison Garrett">Allison Garrett</option>
+				<option value="Michele Wuenschel">Michele Wuenschel</option>
+				<option value="NA">NA</option>
+			</select>
+			<br>
+			<label>Procedure</label>
+			<br>
+			<select id="procedure" name="procedure">
+				<option value="" selected disabled hidden></option>
+				<option value="Yes">Yes</option>
+				<option value="No">No</option>
+				<option value="NA">NA</option>
+			</select>
+			<br>
+			<label>Feedback</label>
+			<br>
+			<input type="text" name="feedback" value="">
+			<br>
+			<label>Short Text Description</label>
+			<br>
+			<input type="text" name="shortText" value="">
+		</form>
+	</p>
+	<p>
+		<button class="button" id="copy" onclick="validate()" class="js-textareacopybtn">Create</button>
+		<button class="button" id="create" onclick="createFunction()" class="js-textareacreatebtn">Copy Short text</button>
 		<button class="button" id="reset" type="reset" value="Reset" onclick="clearFields()">Reset</button>
-	</form>
+		<textarea class="js-copytextarea" id="textBlock"></textarea>
+		<textarea class="js-createtextarea" id="createBlock"></textarea>
 
-<p>
-  <button class="button" id="copy" onclick="copyFunction()" class="js-textareacopybtn" style="vertical-align:top;">Create</button>
-  <textarea class="js-copytextarea" id="textBlock"></textarea>
-  
-  <button class="button" id="create" onclick="createFunction()" class="js-textareacreatebtn" style="vertical-align:top;">Copy Short text</button>
-  <textarea class="js-createtextarea" id="createBlock"></textarea>
-</p>
 
-<img id="logo" src="logo.png">
-
+	</div>
 
 </body>
 </html>
-
