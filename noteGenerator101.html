@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="PNC Note Generator" content="PNC Note Generator">
+	<title>Note Generator v1.01</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+	<script src="https://use.fontawesome.com/242245a4a1.js"></script>
+
+	<!--This is where CSS BEGIN-->
+	<style type="text/css">
+	body {
+		padding: 20px;
+		background: #fafafa;
+	}
+
+	label {
+		font-weight: bold;
+	}
+
+	.spacer {
+		padding-bottom: 10px;
+	}
+
+	.badge {
+		height: 35px;
+		font-style: @font-family-sans-serif;
+		font-size: 16px;
+		font-weight: 400;
+	}
+
+	.txt-primary {
+		color: #FF5A09;
+		font-family: "times";
+	}
+
+	.txt-secondary{
+		color: #0066ff;
+		font-family: "times";
+	}
+
+	.back-secondary{
+		position: fixed;
+		display: block;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: rgba(54, 47, 47, 0.94);
+		z-index: 2;
+		cursor: pointer;
+		font-family: "times";
+		overflow: auto;
+		padding-left: 5px;
+		padding-right: 5px;
+		padding-bottom: 5px;
+	}
+
+	.form-control {
+		border: 2px solid red;
+		border-radius: 4px;
+	}
+	.fa {
+		color: #0066ff;
+		position: relative;
+		font-size: 30px;
+		left: 1.5em;
+	}
+
+	</style>
+</head>
+<body>
+	<!--This is where HTML BEGIN-->
+	<div class="back-secondary">
+		<h1 class="display-4 text-center txt-secondary col-12 pb-1">Using the Note Generator:</h1>
+		<div class="container border border-danger"><h2 class="text-danger display-5 text-center col-12">Important:</h2>
+			<p class="text-white text-center col-12">When typing the procedure number, underscore's will be generated automatically.</p>
+			<p class="text-white text-center col-12">Don't type the loan number in the short Desctiption, this will be added automatically.</p>
+			<p class="text-white text-center col-12">Do not manually type in "HLHD - Empower - Mortgage -" for short description, this will be generated automatically.</p>
+		</div>
+		<h3 class="pt-3 pb-3 font-italic txt-secondary text-center col-12">The purpose of the Note Generator is to help create a perfect ticket every time!</h3>
+		<p class="col-12 text-white text-center pb-3">Don't worry, it's simple to use... Follow along with the questionnaire. Based off of your selections, additional questions
+			may appear. When you generate enough information for the ticket, 3 buttons will pop up.</p>
+			<div class="container"><button type="button" class="col-12 btn btn-primary">Copy Short Text</button></div>
+			<p class="pt-3 text-center text-white col-12">will copy the information you should paste into
+				the service now short description field to your clipboard.</p>
+				<div class="pt-3 container"><button type="button" class=" col-12 btn btn-primary">Copy Description</button></div>
+				<p class="pt-3 text-center col-12 text-white">will copy the information you should paste into
+					the main description in service now to your clipboard.</p>
+					<div class="container pt-3"><button type="button" class="col-12 btn btn-danger">Reset</button></div>
+					<p class="pt-3 text-center col-12 text-white">will clear the form for the next call.</p>
+					<h3 class="pb-3 font-italic text-center col-12 txt-secondary">The keyboard shortcut to paste is ctrl+v</h3>
+					<p class="pt-3 text-center font-weight-bold col-12 text-white">Click anywhere to start...</p>
+				</div>
+				<div class="pb-3 pt-3 border border-dark container">
+					<div class="col-12 row">
+						<div class="col-11 row">
+							<h2 class="txt-primary" id="title">PNC</h2>
+							<h5 class="txt-secondary pt-2 pl-1" id="dropTitle">Note Generator v1.01</h5>
+						</div>
+
+						<div class="col-1 text-right"><a href="javascript:;" class="help"><i class="fa fa-question-circle" aria-hidden="true"></i></a></div>
+
+					</div>
+
+
+					<div class="container">
+						<form id="noteGen">
+							<div class="form-group">
+								<label for="callType">Call Type:</label>
+								<select class="form-control" id="callType">
+									<option value="" selected disabled hidden></option>
+									<option value="Sales">Sales</option>
+									<option value="Mortgage Ops Call">Mortgage Ops Call</option>
+									<option value="Non Prod or Transferred">Non Prod or Transferred</option>
+								</select>
+							</div>
+
+							<div class="form-group platformForm">
+								<label for="platform">Platform:</label>
+								<select class="form-control" id="platform">
+									<option value="" selected disabled hidden></option>
+									<option value="Empower">Empower</option>
+									<option value="Genesis">Genesis</option>
+									<option value="Sales Edge">Sales Edge</option>
+									<option value="Multiple">Multiple</option>
+								</select>
+							</div>
+
+							<div class="form-group issueForm">
+								<label for="issue">Issue:</label>
+								<select class="form-control" id="issue">
+									<option value="" selected disabled hidden></option>
+									<option value="Login issue for Genesis">Login issue for Genesis</option>
+									<option value="Login issue for Sales Edge">Login issue for Sales Edge</option>
+									<option value="Login issue for Empower">Login issue for Empower</option>
+									<option value="Login issue Other">Login issue Other</option>
+									<option value="Sales Edge Lead not showing in Empower">Sales Edge Lead not showing in Empower</option>
+									<option value="Genesis or Sales Edge issue not listed above">Genesis or Sales Edge issue not listed above</option>
+									<option value="AUS issue">AUS issue (Desktop Underwriter, Loan Prospector, etc)</option>
+									<option value="Compliance Ease issue">Compliance Ease issue</option>
+									<option value="MI or MIP issue (Mortgage Insurance)">MI or MIP issue (Mortgage Insurance)</option>
+									<option value="Escrow Issue">Escrow Issue</option>
+									<option value="Fee issue">Fee issue (Including Smart GFE) but not related to Escrow and MI</option>
+									<option value="Credit report issue">Credit report issue (unable to pull, receive, etc)</option>
+									<option value="Document issue">Document issue (unable to send or missing information, also including Docutech related problems)</option>
+									<option value="Assigning Borrowers">Assigning Borrowers</option>
+									<option value="Issue with ordering Title, Appraisal">Issue with ordering Title, Appraisal</option>
+									<option value="Pricing or Rate Lock issue">Pricing or Rate Lock issue</option>
+									<option value="Mortgage Product Issue">Mortgage Product Issue (including Loan Product Advisor)</option>
+									<option value="20 Data Points">Issue with any of the 20 application data points (aka URLA)</option>
+									<option value="Unable to send to proper Destination">Unable to send to proper Destination</option>
+									<option value="Government Loan (FHA, VA, etc) issue not related to any other issue">Government Loan (FHA, VA, etc) issue not related to any other issue</option>
+								</select>
+							</div>
+
+							<div class="form-group shortDescriptionForm">
+								<label for="loanNumber3">Short Description:</label>
+								<input type="text" class="form-control" maxlength="256" id="shortDescription" placeholder="Short Description of issue">
+							</div>
+
+							<div class="form-group procedureQuestionForm">
+								<label for="procedureQuestion">Were you able to solve this with a procedure?</label>
+								<select class="form-control" id="procedureQuestion">
+									<option value="" selected disabled hidden></option>
+									<option value="Yes">Yes</option>
+									<option value="No">No</option>
+								</select>
+							</div>
+
+							<div class="form-group procedureNumberForm">
+								<label for="procedureNumber">Procedure Number:</label>
+								<input type="text" class="form-control" maxlength="8" id="procedureNumber" placeholder="##_##_##   Located in the Procedure's Header ">
+							</div>
+
+							<div class="form-group moveOnForm">
+								<label for="moveOn">Is the caller able to move on from the issue (due either to resolving it for them, or not stopping them from moving forward)?</label>
+								<select class="form-control" id="moveOn">
+									<option value="" selected disabled hidden></option>
+									<option value="Yes">Yes</option>
+									<option value="No">No</option>
+								</select>
+							</div>
+
+							<div class="form-group loanQuestionForm">
+								<label for="loanQuestion">Is there a Loan Number or Sales Edge lead number associated with this issue?</label>
+								<select class="form-control" id="loanQuestion">
+									<option value="" selected disabled hidden></option>
+									<option value="Yes">Yes</option>
+									<option value="No">No</option>
+								</select>
+							</div>
+
+							<div class="form-group loanNumberForm">
+								<label for="loanNumber">Loan Number:</label>
+								<input type="text" class="form-control" maxlength="10" id="loanNumber" placeholder="Loan number or Sales Edge lead number">
+							</div>
+
+							<div class="form-group loanQuestionForm2">
+								<label for="loanQuestion2">Is there another Loan Number or Sales Edge lead number that is associated?</label>
+								<select class="form-control" id="loanQuestion2">
+									<option value="" selected disabled hidden></option>
+									<option value="Yes">Yes</option>
+									<option value="No">No</option>
+								</select>
+							</div>
+
+							<div class="form-group loanNumberForm2">
+								<label for="loanNumber">Loan Number:</label>
+								<input type="text" class="form-control" maxlength="10" id="loanNumber2" placeholder="Loan number or Sales Edge lead number">
+							</div>
+
+							<div class="form-group loanQuestionForm3">
+								<label for="loanQuestion3">Is there another Loan Number or Sales Edge lead number that is associated?</label>
+								<select class="form-control" id="loanQuestion3">
+									<option value="" selected disabled hidden></option>
+									<option value="Yes">Yes</option>
+									<option value="No">No</option>
+								</select>
+							</div>
+
+							<div class="form-group loanNumberForm3">
+								<label for="loanNumber3">Loan Number:</label>
+								<input type="text" class="form-control" maxlength="10" id="loanNumber3" placeholder="Loan number or Sales Edge lead number">
+							</div>
+
+							<div class="form-group feedbackQuestionForm">
+								<label for="feedbackQuestion">Do you have Feedback for the developer to consider?</label>
+								<select class="form-control" id="feedbackQuestion">
+									<option value="" selected disabled hidden></option>
+									<option value="Yes">Yes</option>
+									<option value="No">No</option>
+								</select>
+							</div>
+
+							<div class="form-group feedbackForm">
+								<label for="feedback">Feedback:</label>
+								<input type="text" class="form-control" maxlength="256" id="feedback" placeholder="Feedback for developer">
+							</div>
+
+						</div>
+
+						<div class="container ">
+							<div class="container">
+								<span class="badge badge-success col-12 text-center pt-2" id="success">Text Copied!</span>
+								<div class="col-12 spacer"></div>
+								<button type="button" class="col-12 btn btn-primary" id="shortTextButton">Copy Short Text</button>
+								<div class="col-12 spacer"></div>
+								<button type="button" class=" col-12 btn btn-primary" id="descriptionButton">Copy Description</button>
+								<div class="col-12 spacer"></div>
+								<button type="button" class="col-12 btn btn-danger" id="resetButton">Reset</button>
+							</div>
+						</div>
+
+					</form>
+
+
+
+					<div class="container">
+						<textarea id="shortTextBlock"></textarea>
+
+						<textarea id="descriptionBlock"></textarea>
+
+
+					</div>
+
+				</div>
+			</div>
+
+
+
+
+
+		</body>
+
+		<!--This is where JAVASCRIPT BEIGNS-->
+
+		<SCRIPT>
+		//Run this after the whole page loads
+		$(document).ready(function() {
+			hideAll();
+
+			//listens for the form to change
+			$('form').on('keyup change', 'input, select, textarea', function(){
+				//set variables to their value on the form
+				var callType = $( "select#callType option:checked" ).val();
+				var platform = $( "select#platform option:checked" ).val();
+				var issue = $( "select#issue option:checked" ).val();
+				var shortDescription = $( "select#shortDescription option:checked" ).val();
+				var procedureQuestion = $( "select#procedureQuestion option:checked" ).val();
+				var procedureNumber = $( "select#procedureNumber option:checked" ).val();
+				var moveOn = $( "select#moveOn option:checked" ).val();
+				var loanQuestion = $( "select#loanQuestion option:checked" ).val();
+				var loanNumber = $( "select#loanNumber option:checked" ).val();
+				var loanQuestion2 = $( "select#loanQuestion2 option:checked" ).val();
+				var loanNumber2 = $( "select#loanNumber2 option:checked" ).val();
+				var loanQuestion3 = $( "select#loanQuestion3 option:checked" ).val();
+				var loanNumber3 = $( "select#loanNumber3 option:checked" ).val();
+				var feedbackQuestion = $( "select#feedbackQuestion option:checked" ).val();
+				var feedback = $( "select#Feedback option:checked" ).val();
+
+
+				//This is the note that actually gets printed for the copy description button
+				//the replace is removing periods and replacing with spaces
+				var note = "Note Generator v1.01\nCallType: " + callType + ".\n"
+				+"platform: " + platform + ".\n"
+				+"issue: " + issue + ".\n"
+				+"shortDescription: " + $('#shortDescription').val().replace(/\./g,' ') + ".\n"
+				+"procedureQuestion: " + procedureQuestion + ".\n"
+				+"procedureNumber: " + $('#procedureNumber').val() + ".\n"
+				+"moveOn: " + moveOn + ".\n"
+				+"loanQuestion: " + loanQuestion + ".\n"
+				+"loanNumber: " + $('#loanNumber').val().replace(/\./g,' ') + ".\n"
+				+"loanQuestion2: " + loanQuestion2 + ".\n"
+				+"loanNumber2: " + $('#loanNumber2').val().replace(/\./g,' ') + ".\n"
+				+"loanQuestion3: " + loanQuestion3 + ".\n"
+				+"loanNumber3: " + $('#loanNumber3').val().replace(/\./g,' ') + ".\n"
+				+"feedbackQuestion: " + feedbackQuestion + ".\n"
+				+"feedback: " + $('#feedback').val().replace(/\./g,' ') + ".";
+
+
+				//This is the logic for showing the form fields based on the value of the answers
+				switch(callType) {
+					case "Sales":
+					$(".platformForm").show();
+					break;
+					case "Mortgage Ops Call":
+					$(".platformForm").show();
+					break;
+					case "Non Prod or Transferred":
+					$(".platformForm").show();
+					break;
+				}
+
+				switch(platform) {
+					case "Empower":
+					$(".issueForm").show();
+					break;
+					case "Genesis":
+					$(".issueForm").show();
+					break;
+					case "Sales Edge":
+					$(".issueForm").show();
+					break;
+					case "Multiple":
+					$(".issueForm").show();
+					break;
+				}
+
+				switch(issue) {
+					case "Login issue for Genesis":
+					$(".shortDescriptionForm").show();
+					$(".procedureQuestionForm").show();
+					break;
+					case "Login issue for Sales Edge":
+					$(".shortDescriptionForm").show();
+					$(".procedureQuestionForm").show();
+					break;
+					case "Login issue for Empower":
+					$(".shortDescriptionForm").show();
+					$(".procedureQuestionForm").show();
+					break;
+					case "Login issue Other":
+					$(".shortDescriptionForm").show();
+					$(".procedureQuestionForm").show();
+					break;
+					case "Sales Edge Lead not showing in Empower":
+					$(".shortDescriptionForm").show();
+					$(".procedureQuestionForm").show();
+					break;
+					case "Genesis or Sales Edge issue not listed above":
+					$(".shortDescriptionForm").show();
+					$(".procedureQuestionForm").show();
+					break;
+					case "AUS issue":
+					$(".shortDescriptionForm").show();
+					$(".procedureQuestionForm").show();
+					break;
+					case "Compliance Ease issue":
+					$(".shortDescriptionForm").show();
+					$(".procedureQuestionForm").show();
+					break;
+					case "MI or MIP issue (Mortgage Insurance)":
+					$(".shortDescriptionForm").show();
+					$(".procedureQuestionForm").show();
+					break;
+					case "Escrow Issue":
+					$(".shortDescriptionForm").show();
+					$(".procedureQuestionForm").show();
+					break;
+					case "Fee issue":
+					$(".shortDescriptionForm").show();
+					$(".procedureQuestionForm").show();
+					break;
+					case "Credit report issue":
+					$(".shortDescriptionForm").show();
+					$(".procedureQuestionForm").show();
+					break;
+					case "Document issue":
+					$(".shortDescriptionForm").show();
+					$(".procedureQuestionForm").show();
+					break;
+					case "Assigning Borrowers":
+					$(".shortDescriptionForm").show();
+					$(".procedureQuestionForm").show();
+					break;
+					case "Issue with ordering Title, Appraisal":
+					$(".shortDescriptionForm").show();
+					$(".procedureQuestionForm").show();
+					break;
+					case "Pricing or Rate Lock issue":
+					$(".shortDescriptionForm").show();
+					$(".procedureQuestionForm").show();
+					break;
+					case "Mortgage Product Issue":
+					$(".shortDescriptionForm").show();
+					$(".procedureQuestionForm").show();
+					break;
+					case "20 Data Points":
+					$(".shortDescriptionForm").show();
+					$(".procedureQuestionForm").show();
+					break;
+					case "Unable to send to proper Destination":
+					$(".shortDescriptionForm").show();
+					$(".procedureQuestionForm").show();
+					break;
+					case "Government Loan (FHA, VA, etc) issue not related to any other issue":
+					$(".shortDescriptionForm").show();
+					$(".procedureQuestionForm").show();
+					break;
+				}
+
+				switch(procedureQuestion) {
+					case "Yes":
+					$(".procedureNumberForm").show();
+					$(".moveOnForm").show();
+					break;
+					case "No":
+					$(".procedureNumberForm").hide();
+					$(".moveOnForm").show();
+					break;
+				}
+
+				switch(moveOn) {
+					case "Yes":
+					$(".loanQuestionForm").show();
+					break;
+					case "No":
+					$(".loanQuestionForm").show();
+					break;
+				}
+
+				switch(loanQuestion) {
+					case "Yes":
+					$(".loanNumberForm").show();
+					$(".loanQuestionForm2").show();
+					$(".feedbackQuestionForm").hide();
+					break;
+					case "No":
+					$(".loanNumberForm").hide();
+					$(".loanQuestionForm2").hide();
+					$(".feedbackQuestionForm").show();
+					break;
+				}
+
+				switch(loanQuestion2) {
+					case "Yes":
+					$(".loanNumberForm2").show();
+					$(".loanQuestionForm3").show();
+					$(".feedbackQuestionForm").hide();
+					break;
+					case "No":
+					$(".loanNumberForm2").hide();
+					$(".loanQuestionForm3").hide();
+					$(".feedbackQuestionForm").show();
+					break;
+				}
+
+				switch(loanQuestion3) {
+					case "Yes":
+					$(".loanNumberForm3").show();
+					$(".feedbackQuestionForm").show();
+					break;
+					case "No":
+					$(".loanNumberForm3").hide();
+					$(".feedbackQuestionForm").show();
+					break;
+				}
+
+				switch(feedbackQuestion) {
+					case "Yes":
+					$(".feedbackForm").show();
+					$("#shortTextButton").show();
+					$("#descriptionButton").show();
+					$("#resetButton").show();
+					break;
+					case "No":
+					$(".feedbackForm").hide();
+					$("#shortTextButton").show();
+					$("#descriptionButton").show();
+					$("#resetButton").show();
+					break;
+				}
+
+				//start button code for short text
+				$("#shortTextButton").on("click", function() {
+					//This is what we are going to actually print
+					var shortTextPrint = "HLHD - Empower - Mortgage - " + $('#shortDescription').val() + " " + $('#loanNumber').val();
+					//write to the text box -- show the text box so we can select the text -- after we copy the code, hide the text box again
+					$("#shortTextBlock").html(shortTextPrint);
+					$("#shortTextBlock").show();
+					var selectText = document.getElementById("shortTextBlock");
+					selectText.select();
+					copyToClipBoard();
+					$("#shortTextBlock").hide();
+					//end button code for short text
+				});
+
+
+				//start button code for description text
+				$("#descriptionButton").on("click", function() {
+					//we are going to print note (passing the varible created earlier)
+					//write to the text box -- show the text box so we can select the text -- after we copy the code, hide the text box again
+					$("#descriptionBlock").html(note);
+					$("#descriptionBlock").show();
+					var selectText = document.getElementById("descriptionBlock");
+					selectText.select();
+					copyToClipBoard();
+					$("#descriptionBlock").hide();
+					//end button code for description text
+				});
+
+				//start button code for reset
+				$("#resetButton").on("click", function() {
+					//reset the form and hide the fields
+					document.getElementById("noteGen").reset();
+					$(".form-control").css("border", "2px solid red");
+					hideAll();
+					//end button code for reset
+				});
+
+			});
+
+			//start button code for instructions pop up at start
+			$(".back-secondary").on("click", function() {
+				$(".back-secondary").hide();
+			});
+			//end button code for instructions pop up at start
+
+			//start code for instructions pop up off question mark button
+			$(".help").on("click", function() {
+				$(".back-secondary").show();
+			});
+			//end question mark code
+
+			//calling other functions
+			forceProcedure();
+			validate();
+
+			//end document ready function
+		});
+
+		//this function foces the correct input for procedure numbers
+		function forceProcedure() {
+			$('#procedureNumber').keyup(function() {
+				var check = $(this).val().split("_").join(""); // remove _
+				if (check.length > 0) {
+					check = check.match(new RegExp('.{1,2}', 'g')).join("_");
+				}
+				$(this).val(check);
+			});
+		}
+
+		//hide all of the fields but the initial question
+		function hideAll() {
+			$(".platformForm").hide();
+			$(".issueForm").hide();
+			$(".shortDescriptionForm").hide();
+			$(".procedureQuestionForm").hide();
+			$(".procedureNumberForm").hide();
+			$(".moveOnForm").hide();
+			$(".loanQuestionForm").hide();
+			$(".loanNumberForm").hide();
+			$(".loanQuestionForm2").hide();
+			$(".loanNumberForm2").hide();
+			$(".loanQuestionForm3").hide();
+			$(".loanNumberForm3").hide();
+			$(".feedbackQuestionForm").hide();
+			$(".feedbackForm").hide();
+			$("#shortTextButton").hide();
+			$("#descriptionButton").hide();
+			$("#resetButton").hide();
+			$("#shortTextBlock").hide();
+			$("#success").hide();
+			$("#descriptionBlock").hide();
+		}
+
+		//After they input a value remove the red border
+		function validate() {
+			$("#noteGen :input").change(function() {
+				$(this).css("border", "1px solid grey");
+				$(this).attr("required", "");
+			});
+		}
+
+		//copy text to the clipboard
+		function copyToClipBoard() {
+			try {
+				var successful = document.execCommand('copy');
+				//if it works show our success popup
+				var msg = successful ? 'successful' : 'unsuccessful';
+				$('#success').fadeIn('normal', function () {
+					$(this).fadeOut('fast');
+				});
+				//if it doesn't copy print to dev console so we can see error there when testing
+			} catch (err) {
+				console.log('Oops, unable to copy');
+			}
+		}
+
+
+		</SCRIPT>
+
+		</html>
